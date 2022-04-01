@@ -1,0 +1,39 @@
+<ion-content>
+
+<div class="buttonFirstDiv">          
+      <ion-slides #slides pager="true" autoplay='8000' effect="fade" loop='true' zoom="true" dir="rtl" speed="750">
+            <ion-slide>
+            	<div class="container">
+                	<div><ion-img src="../../assets/imgs/2.png"></ion-img> </div>
+                    <div class="centered">
+                    	<div class="fontSize22 titleFontBold">مطاعم</div>
+                        <div class="fontSize17">جميع انواع المطاعم</div>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide>
+            <div class="container">
+                <div><img src="assets/imgs/3.png"></div>
+                <div class="centered">
+                    <div class="fontSize22 titleFontBold">ملابس</div>
+                    <div class="fontSize17">لجميع افراد العائلة</div>
+                </div>
+            </div>
+            </ion-slide>
+            <ion-slide>
+            <div class="container">
+            	<div><img src="assets/imgs/1.png"></div>
+                 <div class="centered">
+                    <div class="fontSize22 titleFontBold">اثاث</div>
+                    <div class="fontSize17">تناسب جميع الاذواق</div>
+                </div>
+            </div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+     <div class="buttonLastDiv">
+      <div class="textCenter" style="margin-top:75px">
+      	<ion-button class="oneButton fontSize15" id="submit" (click)="functionHomePage()"><span class="paddingBottom5">إبدأ</span></ion-button>
+      </div>
+    </div>
+</ion-content>

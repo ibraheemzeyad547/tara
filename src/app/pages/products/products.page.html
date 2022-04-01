@@ -1,0 +1,112 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="headerToolbar">
+    <ion-title><img src="../../assets/imgs/def4.png" style="width:40px;border-radius:50px"></ion-title>
+     <ion-item lines="none">
+        <form style="display: contents;" (ngSubmit)="searchAllValues()">
+        <ion-input placeholder="بحث"  [(ngModel)]="searchValues"  [ngModelOptions]="{standalone: true}" #searchInput></ion-input>
+        <ion-button class="button" type="submit" (click)="searchAllValues()">
+            <ion-icon class="searchButon" name="search" slot="icon-only"></ion-icon>
+        </ion-button>
+        <button style="display: contents;" id="submit" ion-button type="submit" ></button>
+        </form>
+  </ion-item>
+  </ion-toolbar>
+  <div class="largDiveSortAndFilter">
+    <ion-grid class="gridDepartInformation">
+        <ion-row>
+            <ion-col class="textAlignStart textDepartInformation" style="direction:rtl" size="5">
+                <span class="verticalAlignTop" style="padding-top:3px">المنتجات : {{countOfAllValues}}</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>
+</ion-header>
+<ion-content>
+   <div style="padding-right:3px; padding-left:3px">
+    <div style="padding-top:3px">
+        <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+        	 <ion-slide #slidesCatHome class="slidesData">
+               <div class="textSlider" (click)="functionSelectCat(0)">الكل</div>
+            </ion-slide>
+            <ion-slide #slidesCatHome *ngFor="let items of returnCategoriesArray;let i = index"  class="slidesData">
+               <div class="textSlider" (click)="functionSelectCat(items.id)">{{items.title}}</div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div *ngIf="subCategories!=0" style="padding-top:3px">
+        <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+         <ion-slide #slidesCatHome class="slidesData">
+               <div class="textSlider" (click)="functionSelectSubCat(0)">الكل</div>
+            </ion-slide>
+            <ion-slide *ngFor="let itemsSub of returnSubCategoriesArray;let i = index"  class="slidesData">
+               <div class="textSlider" (click)="functionSelectSubCat(itemsSub.id)">{{itemsSub.title}}</div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <!-- <div *ngIf="regions!=0" style="padding-top:3px">
+        <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+            <ion-slide *ngFor="let itemsregions of returnRegionsArray;let i = index"  class="slidesData">
+               <div class="textSlider" (click)="functionSelectregions(itemsregions.id)">{{itemsregions.title}}</div>
+            </ion-slide>
+        </ion-slides>
+    </div>-->
+    
+        <div *ngIf="stores!=0">
+            <div *ngIf="stores!=0">
+                <div class="padding5" style="position: relative;" *ngFor="let items of returnAllProductsArray;let i = index">
+                <div class="storesBox">
+                    <div class="storesSubBox">
+                        <div class="storesImageDiv" (click)="functionProductsInformation(items.id)">
+                             <img src="{{items.smallImage}}" class="storesImage">
+                        </div>
+                        <div (click)="functionProductsInformation(items.id,items.storeId)">
+                            <div>
+                                <div class="storesName">{{items.title}}</div>
+                                <div class="storesCatLabel">{{items.storesName}}</div>
+                                <div class="storesSubCatLabel">{{items.storesCatName}}</div>
+                                <div class="storesSubCatLabel">{{items.storesSubCatName}}</div>
+                                <div class="storesSubCatLabel" *ngIf="items.offerPrice!=0">{{items.offerPrice}}</div>
+                                <div class="storesSubCatLabel" *ngIf="items.offerPrice==0">{{items.price}} د.أ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            </div>
+        </div>
+         <div *ngIf="stores==0" class="divEmptyVal">
+        	<div>
+                <img src="../../assets/imgs/noStores.png" style="width:150px; height:150px">
+            </div>
+            <div class="emptyFirstText">
+                عذرا! لا يوجد منتجات حاليا
+            </div>
+            <div class="emptyLastText">
+                لم يتم إضافة اي بيانات على هذه الشاشة حاليا
+            </div>
+        </div>
+   </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+<ion-toolbar class="footerToolbar">
+	<div class="width100">
+        <div class="menueClass" (click)="functionGoToHome()">
+        	<div><ion-icon name="home" slot="start"></ion-icon></div>
+            <div class="labelClass">الرئيسية</div>
+        </div>
+           <div class="menueClass" (click)="functionGoToStores()">
+        	<div><ion-icon name="storefront" slot="start"></ion-icon></div>
+            <div class="labelClass">المتاجر</div>
+        </div>
+         <div class="menueClass menueClassActive">
+        	<div><ion-icon name="storefront" slot="start"></ion-icon></div>
+            <div class="labelClass">المنتجات</div>
+        </div>
+        
+        <div class="menueClass" (click)="functionOpenMenue()">
+        	<div><ion-icon name="list" slot="start"></ion-icon></div>
+            <div class="labelClass">قائمتي</div>
+        </div>
+    </div>
+</ion-toolbar>
+</ion-footer>
